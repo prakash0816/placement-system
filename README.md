@@ -1,12 +1,21 @@
-# 🎓 Student Placement System (Spring Boot Backend)
+# 🎓 Student Placement System – Spring Boot REST API
 
-A professional backend REST API project built using **Spring Boot, MySQL, JPA, and Swagger**.
-
-This project manages student records for placement purposes with full CRUD operations.
+A professional backend REST API built using **Spring Boot, Java, JPA, MySQL, Swagger, and Docker**.  
+This project manages student records for placement purposes with full CRUD functionality and is publicly deployed.
 
 ---
 
-## 🚀 Features
+## 🚀 Live Project
+
+- 🌐 Live API Base URL:  
+  https://placement-system-sohs.onrender.com
+
+- 📘 Swagger API Documentation:  
+  https://placement-system-sohs.onrender.com/swagger-ui/index.html
+
+---
+
+## ✨ Features
 
 - Add Student  
 - Get All Students  
@@ -14,67 +23,45 @@ This project manages student records for placement purposes with full CRUD opera
 - Search Students by Skill  
 - Update Student  
 - Delete Student  
-- Input Validation  
+- Input Validation (Jakarta Validation)  
 - Global Exception Handling  
-- Swagger API Documentation  
+- Swagger OpenAPI Documentation  
+- Dockerized Application  
+- Deployed on Render (Public API)  
 
 ---
 
 ## 🛠️ Technologies Used
 
 - Java 21  
-- Spring Boot  
+- Spring Boot 3  
 - Spring Data JPA  
-- MySQL  
+- Hibernate  
+- MySQL (Local Development)  
+- H2 Database (Cloud Deployment)  
 - Maven  
 - Swagger OpenAPI  
-- Postman  
+- Docker  
+- Git & GitHub  
+- Render Cloud Platform  
 
 ---
 
 ## 📌 API Endpoints
 
 | Method | Endpoint | Description |
-|--------|------------|--------------|
-| POST | `/students` | Add student |
+|--------|---------|--------------|
+| POST | `/students` | Add new student |
 | GET | `/students` | Get all students |
 | GET | `/students/{id}` | Get student by ID |
-| GET | `/students/search?skill=java` | Search by skill |
+| GET | `/students/search?skill=java` | Search students by skill |
 | PUT | `/students/{id}` | Update student |
 | DELETE | `/students/{id}` | Delete student |
 
 ---
 
-## 📄 Swagger UI (API Documentation)
+## ▶️ Run Project Locally
 
-After running the project locally, open:http://localhost:8080/swagger-ui/index.html
----
-
-## ▶️ How to Run Project
-
-1. Clone repository:
+### 1. Clone the repository
 ```bash
 git clone https://github.com/prakash0816/placement-system.git
-Open in IntelliJ
-
-Configure MySQL in application.properties
-
-Run:PlacementSystemApplication.java
-
-##👨‍💻**Author**
-
-Jaya Prakash
-MCA Student | Java Backend Developer
-GitHub: https://github.com/prakash0816
-
----
-
-## ✅** Step 3: Save and push to GitHub**
-
-Now run these in terminal:
-
-```bash
-git add README.md
-git commit -m "Added professional README"
-git push
-
