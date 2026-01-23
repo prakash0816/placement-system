@@ -4,9 +4,12 @@ import com.mca.placement_system.model.Student;
 import com.mca.placement_system.service.StudentService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/students")
 public class StudentController {

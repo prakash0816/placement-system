@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Placement System</title>
+    <link rel="stylesheet" href="style.css">
+
+<script>
+    if (!localStorage.getItem("loggedIn")) {
+        window.location.href = "login.html";
+    }
+
+    function logout() {
+        localStorage.removeItem("loggedIn");
+        window.location.href = "login.html";
+    }
+</script>
+</head>
+
+<body>
+
+<div class="app">
+    <h1>🎓 Student Placement System</h1>
+
+    <div class="card">
+        <h2>Add / Update Student</h2>
+
+        <div class="form">
+            <input id="name" placeholder="Name">
+            <small id="nameError"></small>
+
+            <input id="email" placeholder="Email">
+            <small id="emailError"></small>
+
+            <input id="skill" placeholder="Skill">
+            <small id="skillError"></small>
+
+            <input id="cgpa" placeholder="CGPA">
+            <small id="cgpaError"></small>
+
+            <button onclick="addStudent()">Save Student</button>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Search</h2>
+        <input id="search" placeholder="Search by skill">
+        <button onclick="searchSkill()">Search</button>
+        <button onclick="loadStudents()">Reset</button>
+    </div>
+
+    <div class="card">
+        <h2>Students List</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th><th>Name</th><th>Email</th><th>Skill</th><th>CGPA</th><th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+</div>
+<button onclick="logout()">Logout</button>
+
+
+<div id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
