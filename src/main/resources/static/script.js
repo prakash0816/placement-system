@@ -1,120 +1,104 @@
-const API = "http://localhost:8080/students";
-let editId = null;
-
-function toast(msg) {
-    const t = document.getElementById("toast");
-    t.innerText = msg;
-    t.style.opacity = 1;
-    setTimeout(() => t.style.opacity = 0, 2500);
-}
-
-function clearErrors() {
-    ["name","email","skill","cgpa"].forEach(id => {
-        document.getElementById(id + "Error").innerText = "";
-    });
-}
-
-function validate(student) {
-    let ok = true;
-    clearErrors();
-
-    if (!student.name.trim()) {
-        nameError.innerText = "Name required";
-        ok = false;
-    }
-
-    if (!student.email.includes("@")) {
-        emailError.innerText = "Invalid email";
-        ok = false;
-    }
-
-    if (!student.skill.trim()) {
-        skillError.innerText = "Skill required";
-        ok = false;
-    }
-
-    if (student.cgpa < 0 || student.cgpa > 10) {
-        cgpaError.innerText = "CGPA 0–10 only";
-        ok = false;
-    }
-
-    return ok;
-}
+const API = "/api/students";
 
 function loadStudents() {
-    fetch(API).then(r => r.json()).then(render);
+    fetch(API)
+        .then(r => r.json())
+        .then(render)
+        .catch(err => console.error("Load error", err));
 }
-
 function render(data) {
-    tableBody.innerHTML = "";
+    const table = document.getElementById("tableBody");
+    table.innerHTML = "";
+
+    const isAdmin = window.location.pathname.includes("dashboard");
+
     data.forEach(s => {
-        tableBody.innerHTML += `
-            <tr>
-                <td>${s.id}</td>
-                <td>${s.name}</td>
-                <td>${s.email}</td>
-                <td>${s.skill}</td>
-                <td>${s.cgpa}</td>
-                <td>
-                    <button onclick="edit(${s.id},'${s.name}','${s.email}','${s.skill}',${s.cgpa})">✏️</button>
-                    <button onclick="remove(${s.id})">❌</button>
-                </td>
-            </tr>`;
+        table.innerHTML += `
+        <tr>
+            <td>${s.rollNumber}</td>
+            <td>${s.name}</td>
+            <td>${s.email}</td>
+            <td>${s.department}</td>
+            <td>${s.year}</td>
+            <td>${s.cgpa}</td>
+            <td>${s.skill}</td>
+            ${isAdmin ? `<td><button onclick="deleteStudent(${s.id})">Delete</button></td>` : ""}
+        </tr>`;
     });
 }
+
+
 
 function addStudent() {
-    const student = {
-        name: name.value,
-        email: email.value,
-        skill: skill.value,
-        cgpa: cgpa.value
+    const roll = document.getElementById("roll").value.trim();
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const dept = document.getElementById("dept").value.trim();
+    const year = document.getElementById("year").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const cgpa = document.getElementById("cgpa").value.trim();
+    const skill = document.getElementById("skill").value.trim();
+
+    if (!roll || !name || !email || !dept || !year || !cgpa || !skill) {
+        alert("Please fill all required fields");
+        return;
+    }
+
+    const data = {
+        rollNumber: roll,
+        name,
+        email,
+        department: dept,
+        year: parseInt(year),
+        phone,
+        cgpa: parseFloat(cgpa),
+        skill
     };
 
-    if (!validate(student)) return;
-
-    const method = editId ? "PUT" : "POST";
-    const url = editId ? API + "/" + editId : API;
-
-    fetch(url, {
-        method,
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(student)
-    }).then(() => {
-        toast(editId ? "Updated successfully" : "Added successfully");
-        editId = null;
+    fetch("/api/students", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    })
+    .then(res => {
+        if (!res.ok) throw new Error();
+        return res.json();
+    })
+    .then(() => {
         clearForm();
         loadStudents();
-    });
+    })
+    .catch(() => alert("Error adding student"));
 }
 
-function remove(id) {
-    fetch(API + "/" + id, {method:"DELETE"})
-        .then(() => {
-            toast("Deleted successfully");
-            loadStudents();
-        });
-}
 
-function edit(id,n,e,s,c) {
-    editId = id;
-    name.value = n;
-    email.value = e;
-    skill.value = s;
-    cgpa.value = c;
-}
 
-function searchSkill() {
-    fetch(API + "/search?skill=" + search.value)
-        .then(r => r.json())
-        .then(render);
+function deleteStudent(id) {
+    fetch(API + "/" + id, { method: "DELETE" })
+        .then(() => loadStudents());
 }
 
 function clearForm() {
-    name.value = "";
-    email.value = "";
-    skill.value = "";
-    cgpa.value = "";
+    ["roll", "rollNumber", "name", "email", "department", "dept", "year", "phone", "cgpa", "skill"]
+        .forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.value = "";
+        });
 }
 
-window.onload = loadStudents;
+function searchStudents() {
+    const q = document.getElementById("search").value.trim();
+
+    if (q === "") {
+        loadStudents();
+        return;
+    }
+
+    fetch(API + "/search?q=" + encodeURIComponent(q))
+        .then(r => r.json())
+        .then(render)
+        .catch(err => console.error("Search error", err));
+}
+
+
+loadStudents();

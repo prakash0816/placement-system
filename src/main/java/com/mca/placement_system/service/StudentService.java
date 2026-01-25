@@ -1,52 +1,34 @@
-
 package com.mca.placement_system.service;
-import com.mca.placement_system.exception.StudentNotFoundException;
+
 import com.mca.placement_system.model.Student;
 import com.mca.placement_system.repository.StudentRepository;
 import org.springframework.stereotype.Service;
-
 
 import java.util.List;
 
 @Service
 public class StudentService {
 
-    private final StudentRepository repository;
+    private final StudentRepository repo;
 
-    public StudentService(StudentRepository repository) {
-        this.repository = repository;
+    public StudentService(StudentRepository repo) {
+        this.repo = repo;
     }
 
-    public Student addStudent(Student student) {
-        return repository.save(student);
-    }
-
+    // ADD THIS METHOD (missing in your project)
     public List<Student> getAllStudents() {
-        return repository.findAll();
+        return repo.findAll();
     }
 
-    public Student getById(Integer id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new StudentNotFoundException("Student not found with id: " + id));
+    public Student addStudent(Student s) {
+        return repo.save(s);
     }
 
-
-    public void deleteStudent(Integer id) {
-        repository.deleteById(id);
+    public void deleteStudent(Long id) {
+        repo.deleteById(id);
     }
 
-    public Student updateStudent(Integer id, Student newData) {
-        Student existing = getById(id);
-
-        existing.setName(newData.getName());
-        existing.setEmail(newData.getEmail());
-        existing.setCgpa(newData.getCgpa());
-        existing.setSkill(newData.getSkill());
-
-        return repository.save(existing);
+    public List<Student> search(String q) {
+        return repo.search(q);
     }
-    public List<Student> searchBySkill(String skill) {
-        return repository.findBySkillContainingIgnoreCase(skill);
-    }
-
 }

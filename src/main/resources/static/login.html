@@ -1,37 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Login - Student System</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Login | Placement Management</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
+<div class="container" style="max-width:420px">
 
-<div class="app">
+    <!-- Header -->
+    <div class="app-header">
+        <div class="logo-circle">🎓</div>
+        <div>
+            <h1 class="app-title" style="font-size:26px">Placement Management</h1>
+            <p class="app-subtitle">Login to continue</p>
+        </div>
+    </div>
+
+    <!-- Login Card -->
     <div class="card">
-        <h2>🔐 Login</h2>
+        <h2 style="margin-top:0">User Login</h2>
 
-        <input id="username" placeholder="Username">
-        <input id="password" type="password" placeholder="Password">
+        <input id="email" placeholder="📧 Email">
+        <input id="password" type="password" placeholder="🔒 Password">
 
-        <button onclick="login()">Login</button>
+        <button onclick="login()" style="width:100%;margin-top:10px">Login</button>
 
-        <p style="color:red" id="loginError"></p>
+        <p id="loginError" style="color:red;margin-top:10px"></p>
     </div>
 </div>
 
 <script>
     function login() {
-        const u = username.value;
-        const p = password.value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
 
-        // Simple demo credentials
-        if (u === "admin" && p === "admin123") {
-            localStorage.setItem("loggedIn", "true");
-            window.location.href = "dashboard.html";
-        } else {
-            loginError.innerText = "Invalid username or password";
-        }
+        fetch("/login", {
+            method: "POST",
+            headers: {"Content-Type": "application/x-www-form-urlencoded"},
+            body: `email=${email}&password=${password}`
+        })
+        .then(r => r.json())
+        .then(data => {
+            if (data.role === "ADMIN") {
+                window.location = "/dashboard.html";
+            } else if (data.role === "STUDENT") {
+                window.location = "/student.html";
+            } else {
+                document.getElementById("loginError").innerText = "Invalid login";
+            }
+        })
+        .catch(() => {
+            document.getElementById("loginError").innerText = "Login failed";
+        });
     }
 </script>
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Student Panel</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+<div class="container">
+
+    <!-- ===== Professional Header ===== -->
+    <div class="app-header">
+        <div class="logo-circle">🎓</div>
+        <div>
+            <h1 class="app-title">Placement Management System</h1>
+            <p class="app-subtitle">Student Dashboard</p>
+        </div>
+    </div>
+
+    <!-- ===== Students Table ===== -->
+    <div class="card">
+        <h2>All Students</h2>
+
+        <input id="search" placeholder="Search by roll / dept / year" oninput="searchStudents()">
+
+        <table>
+            <thead>
+            <tr>
+                <th>Roll</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Dept</th>
+                <th>Year</th>
+                <th>CGPA</th>
+                <th>Skill</th>
+            </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+
+</div>
+
+<script src="/script.js"></script>
+</body>
+</html>

@@ -2,16 +2,13 @@ package com.mca.placement_system.controller;
 
 import com.mca.placement_system.model.Student;
 import com.mca.placement_system.service.StudentService;
-import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.CrossOrigin;
-
 
 import java.util.List;
 
-@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/api/students")
+@CrossOrigin
 public class StudentController {
 
     private final StudentService service;
@@ -20,39 +17,33 @@ public class StudentController {
         this.service = service;
     }
 
-    // POST - Add student
-    @PostMapping
-    public Student add(@Valid @RequestBody Student student) {
-        return service.addStudent(student);
-    }
-
-    // GET - All students
+    // GET ALL students
     @GetMapping
     public List<Student> getAll() {
         return service.getAllStudents();
     }
 
-    // GET - By ID
-    @GetMapping("/{id}")
-    public Student getById(@PathVariable Integer id) {
-        return service.getById(id);
+    // ADD student
+    @PostMapping
+    public Student add(@RequestBody Student s) {
+        return service.addStudent(s);
     }
 
-    // DELETE
+    // DELETE student
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable Integer id) {
+    public void delete(@PathVariable Long id) {
         service.deleteStudent(id);
-        return "Deleted successfully";
     }
 
-    // PUT - Update
-    @PutMapping("/{id}")
-    public Student update(@PathVariable Integer id, @Valid @RequestBody Student student) {
-        return service.updateStudent(id, student);
-    }
+    // SEARCH students
     @GetMapping("/search")
-    public List<Student> search(@RequestParam String skill) {
-        return service.searchBySkill(skill);
+    public List<Student> search(@RequestParam String q) {
+        return service.search(q);
     }
 
+    // STUDENT PROFILE (temporary)
+    @GetMapping("/me")
+    public Student myProfile() {
+        return service.getAllStudents().get(0);
+    }
 }
