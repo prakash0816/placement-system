@@ -1,6 +1,6 @@
-package com.mca.placement_system.repository;
+package com.mca.student_system.repository;
 
-import com.mca.placement_system.model.Student;
+import com.mca.student_system.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;   // 👈 THIS WAS MISSING

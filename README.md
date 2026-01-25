@@ -1,67 +1,118 @@
-# 🎓 Student Placement System – Spring Boot REST API
+# Student Information Management System
 
-A professional backend REST API built using **Spring Boot, Java, JPA, MySQL, Swagger, and Docker**.  
-This project manages student records for placement purposes with full CRUD functionality and is publicly deployed.
+A full-stack web application built using Spring Boot, MySQL, HTML, CSS, and JavaScript to manage student records in a simple and efficient way.
 
----
-
-## 🚀 Live Project
-
-- 🌐 Live API Base URL:  
-  https://placement-system-sohs.onrender.com
-
-- 📘 Swagger API Documentation:  
-  https://placement-system-sohs.onrender.com/swagger-ui/index.html
+This project supports Admin and Student login, allows managing student data, and demonstrates real-world backend architecture.
 
 ---
 
-## ✨ Features
+## Features
 
-- Add Student  
-- Get All Students  
-- Get Student by ID  
-- Search Students by Skill  
-- Update Student  
-- Delete Student  
-- Input Validation (Jakarta Validation)  
-- Global Exception Handling  
-- Swagger OpenAPI Documentation  
-- Dockerized Application  
-- Deployed on Render (Public API)  
+Admin:
+- Add new student
+- View all students
+- Delete students
+- Search students by roll number, department, and year
 
----
+Student:
+- View all students
+- Search students
+- View profile page
 
-## 🛠️ Technologies Used
-
-- Java 21  
-- Spring Boot 3  
-- Spring Data JPA  
-- Hibernate  
-- MySQL (Local Development)  
-- H2 Database (Cloud Deployment)  
-- Maven  
-- Swagger OpenAPI  
-- Docker  
-- Git & GitHub  
-- Render Cloud Platform  
+Authentication:
+- Login system for Admin and Student
+- Passwords encrypted using BCrypt
 
 ---
 
-## 📌 API Endpoints
+## Technologies Used
 
-| Method | Endpoint | Description |
-|--------|---------|--------------|
-| POST | `/students` | Add new student |
-| GET | `/students` | Get all students |
-| GET | `/students/{id}` | Get student by ID |
-| GET | `/students/search?skill=java` | Search students by skill |
-| PUT | `/students/{id}` | Update student |
-| DELETE | `/students/{id}` | Delete student |
+- Java (Spring Boot)
+- Spring Data JPA (Hibernate)
+- MySQL
+- HTML, CSS, JavaScript
+- Maven
+- IntelliJ IDEA
 
 ---
 
-## ▶️ Run Project Locally
+## Project Structure
 
-### 1. Clone the repository
-```bash
-git clone https://github.com/prakash0816/placement-system.git
+com.mca.student_system  
+├── config  
+├── controller  
+├── exception  
+├── model  
+├── repository  
+├── service  
+└── StudentInformationManagementApplication.java
+
+Frontend files:
+
+src/main/resources/static/  
+login.html  
+dashboard.html  
+student.html  
+style.css  
+script.js
+
+---
+
+## How to Run
+
+1. Clone the project
+
+git clone https://github.com/prakash0816/student-information-management-system.git
+
+2. Create MySQL database
+
+CREATE DATABASE placement_db;
+
+3. Configure database in application.properties
+
+spring.datasource.url=jdbc:mysql://localhost:3306/placement_db  
+spring.datasource.username=root  
+spring.datasource.password=Prakash@08
+
+4. Run application
+
+mvn spring-boot:run
+
+or run directly from IntelliJ IDEA.
+
+---
+
+## Application URLs
+
+Login Page  
+http://localhost:8080/login.html
+
+Admin Dashboard  
+http://localhost:8080/dashboard.html
+
+Student Page  
+http://localhost:8080/student.html
+
+API Endpoint  
+http://localhost:8080/api/students
+
+---
+
+## Sample Login Credentials
+
+Admin  
+Email: admin@gmail.com  
+Password: admin123
+
+Student  
+Email: student@gmail.com  
+Password: 123
+
+(You can change credentials from the database)
+
+---
+
+## Author
+
+Jaya Prakash  
+GitHub: https://github.com/prakash0816

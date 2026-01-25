@@ -1,7 +1,7 @@
-package com.mca.placement_system.controller;
+package com.mca.student_system.controller;
 
-import com.mca.placement_system.model.Student;
-import com.mca.placement_system.service.StudentService;
+import com.mca.student_system.model.Student;
+import com.mca.student_system.service.StudentService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

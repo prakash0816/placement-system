@@ -1,4 +1,4 @@
-package com.mca.placement_system.exception;
+package com.mca.student_system.exception;
 
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.mca.placement_system.controller;
+package com.mca.student_system.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -14,7 +14,7 @@
     </parent>
 
     <groupId>com.mca</groupId>
-    <artifactId>placement-system</artifactId>
+    <artifactId>student-information-management-system</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>placement-system</name>
     <description>Student Placement System</description>

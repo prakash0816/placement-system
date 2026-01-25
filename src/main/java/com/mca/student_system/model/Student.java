@@ -1,7 +1,6 @@
-package com.mca.placement_system.model;
+package com.mca.student_system.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 
 @Entity
 public class Student {

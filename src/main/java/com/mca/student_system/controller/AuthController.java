@@ -1,8 +1,7 @@
-package com.mca.placement_system.controller;
+package com.mca.student_system.controller;
 
-import com.mca.placement_system.model.User;
-import com.mca.placement_system.repository.UserRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import com.mca.student_system.model.User;
+import com.mca.student_system.repository.UserRepository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 

@@ -1,4 +1,4 @@
-package com.mca.placement_system.config;
+package com.mca.student_system.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.mca.placement_system.exception;
+package com.mca.student_system.exception;
 
 public class StudentNotFoundException extends RuntimeException {
     public StudentNotFoundException(String message) {

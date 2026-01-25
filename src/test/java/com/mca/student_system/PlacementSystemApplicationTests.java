@@ -1,4 +1,4 @@
-package com.mca.placement_system;
+package com.mca.student_system;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,7 +1,7 @@
-package com.mca.placement_system.service;
+package com.mca.student_system.service;
 
-import com.mca.placement_system.model.Student;
-import com.mca.placement_system.repository.StudentRepository;
+import com.mca.student_system.model.Student;
+import com.mca.student_system.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
